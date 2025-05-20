@@ -1,142 +1,996 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio de Forsainc</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 0;
-      background: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background: #222;
-      color: #fff;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-weight: 700;
-    }
-    nav {
-      margin-top: 0.5rem;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #1e90ff;
-    }
-    main {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    section {
-      margin-bottom: 3rem;
-    }
-    h2 {
-      border-bottom: 2px solid #1e90ff;
-      padding-bottom: 0.5rem;
-    }
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 1.5rem;
-    }
-    .project {
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-    .project:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgb(0 0 0 / 0.15);
-    }
-    .project img {
-      width: 100%;
-      display: block;
-      height: 180px;
-      object-fit: cover;
-    }
-    .project-content {
-      padding: 1rem;
-    }
-    .project-content h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.2rem;
-      color: #1e90ff;
-    }
-    .project-content p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: #555;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.85rem;
-      color: #888;
-      border-top: 1px solid #ddd;
-      margin-top: 4rem;
-    }
-    @media (max-width: 480px) {
-      nav a {
-        display: block;
-        margin: 0.5rem 0;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Créatif | Graphiste</title>
+    <style>
+        /* Variables */
+        :root {
+            --primary-color: #101010;
+            --accent-color: #0076D6;
+            --accent-gradient: linear-gradient(45deg, #0076D6, #00AEFF);
+            --light-color: #1E1E1E;
+            --dark-color: #F4F4F4;
+            --text-color: #CCCCCC;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-gradient);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 118, 214, 0.3);
+            color: white;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(18, 18, 18, 0.95);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #101010 0%, #003366 100%);
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            width: 50%;
+            padding: 2rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-img {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 48%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: #1A1A1A;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        /* Portfolio Section */
+        .portfolio, .testimonials {
+            padding: 6rem 0;
+            background-color: #0F0F0F;
+        }
+
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--dark-color);
+            transition: var(--transition);
+            border-radius: 30px;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .portfolio-image {
+            height: 300px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 118, 214, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-overlay p {
+            margin-bottom: 1rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #1A1A1A;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            height: 60px;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f8f8;
+            border-radius: 50%;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 0;
+            background-color: #0F0F0F;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card, .stat-item {
+            background: #1A1A1A;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background-color: #ddd;
+            overflow: hidden;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            color: #777;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+        }
+
+        .contact-flex {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 2;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            margin-right: 1rem;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #333;
+            border-radius: 4px;
+            font-family: inherit;
+            background-color: #1A1A1A;
+            color: var(--text-color);
+        }
+
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: #0A0A0A;
+            color: var(--text-color);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Modal Image Zoom */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1200px;
+            max-height: 90vh;
+            object-fit: contain;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+            .hero-content {
+                width: 60%;
+            }
+
+            .hero-img {
+                width: 40%;
+            }
+
+            .about-content,
+            .contact-flex {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-flex {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                position: relative;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: white;
+                width: 250px;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+                transform: translateX(100%);
+                transition: var(--transition);
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            nav.show {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 0 0 1rem 0;
+            }
+
+            .hero {
+                flex-direction: column;
+            }
+
+            .hero-content {
+                width: 100%;
+                padding: 4rem 0 2rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-img {
+                position: relative;
+                width: 100%;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid,
+            .services-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Forsainc</h1>
-    <nav>
-      <a href="#about">À propos</a>
-      <a href="#projects">Projets</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-  <main>
-    <section id="about">
-      <h2>À propos</h2>
-      <p>Graphiste passionné, spécialisé en création visuelle, PAO et multimédia. Je donne vie aux idées grâce à des designs modernes et impactants.</p>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Forsa<span>inc</span></a>
+            <button class="mobile-toggle">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Création graphique de haut niveau</h1>
+                <p>Designer graphique passionné par la création d'identités visuelles uniques et d'expériences de marque mémorables.</p>
+                <a href="#portfolio" class="btn">Voir mes travaux</a>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="/api/placeholder/600/800" alt="Designer au travail">
+        </div>
     </section>
-    <section id="projects">
-      <h2>Projets</h2>
-      <div class="projects">
-        <article class="project">
-          <img src="votreimage1.jpg" alt="Projet 1" />
-          <div class="project-content">
-            <h3>Projet 1</h3>
-            <p>Description courte de ce projet graphique.</p>
-          </div>
-        </article>
-        <article class="project">
-          <img src="votreimage2.jpg" alt="Projet 2" />
-          <div class="project-content">
-            <h3>Projet 2</h3>
-            <p>Description courte de ce projet graphique.</p>
-          </div>
-        </article>
-      </div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>À propos de moi</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="/api/placeholder/500/500" alt="Portrait du designer">
+                </div>
+                <div class="about-text">
+                    <p>Je suis un designer graphique avec plus de 8 ans d'expérience dans la création d'identités visuelles fortes et de solutions de design innovantes. Ma passion pour l'esthétique et la communication visuelle m'a conduit à travailler avec des marques de tous horizons.</p>
+                    <p>Mon approche allie créativité et stratégie pour développer des designs qui non seulement attirent l'attention mais communiquent efficacement le message et les valeurs de mes clients.</p>
+                    <a href="#contact" class="btn">Me contacter</a>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h3>120+</h3>
+                            <p>Projets réalisés</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>85+</h3>
+                            <p>Clients satisfaits</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>8+</h3>
+                            <p>Années d'expérience</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>15</h3>
+                            <p>Prix remportés</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Vous pouvez me joindre par email : <a href="mailto:votremail@example.com">votremail@example.com</a></p>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfolio</h2>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="print">Print</button>
+                <button class="filter-btn" data-filter="illustration">Illustration</button>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/600/600" alt="Projet de branding">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>Rebrand Café Artisanal</h3>
+                        <p>Identité visuelle complète pour une chaîne de cafés</p>
+                        <a href="#" class="btn">Voir le projet</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/600/600" alt="Design web">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>Site E-commerce Mode</h3>
+                        <p>Design UI/UX pour une boutique en ligne</p>
+                        <a href="#" class="btn">Voir le projet</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item" data-category="print">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/600/600" alt="Design d'impression">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>Catalogue Produits</h3>
+                        <p>Design éditorial pour une marque de luxe</p>
+                        <a href="#" class="btn">Voir le projet</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item" data-category="illustration">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/600/600" alt="Illustration">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>Série d'Illustrations</h3>
+                        <p>Collection d'art digital pour une campagne publicitaire</p>
+                        <a href="#" class="btn">Voir le projet</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/600/600" alt="Projet de branding">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>Identité Restaurant</h3>
+                        <p>Logo et charte graphique pour un bistrot gastronomique</p>
+                        <a href="#" class="btn">Voir le projet</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/600/600" alt="Design web">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>Application Mobile Fitness</h3>
+                        <p>Interface utilisateur pour une app de coaching sportif</p>
+                        <a href="#" class="btn">Voir le projet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
-  <footer>
-    &copy; 2025 Forsainc. Tous droits réservés.
-  </footer>
-</body>
-</html>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Services</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>⭐</span>
+                    </div>
+                    <h3>Identité de marque</h3>
+                    <p>Création de logos, chartes graphiques et tous les éléments visuels qui définissent votre marque et la rendent mémorable.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>💻</span>
+                    </div>
+                    <h3>Web Design</h3>
+                    <p>Conception d'interfaces utilisateur engageantes et intuitives pour sites web et applications mobiles.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>📱</span>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Création d'expériences utilisateur fluides et agréables pour vos plateformes digitales.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>🖼️</span>
+                    </div>
+                    <h3>Illustration</h3>
+                    <p>Illustrations personnalisées, icônes et éléments graphiques pour enrichir vos supports de communication.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>📰</span>
+                    </div>
+                    <h3>Design éditorial</h3>
+                    <p>Mise en page de magazines, brochures, catalogues et autres supports imprimés avec un souci du détail.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span>📊</span>
+                    </div>
+                    <h3>Design publicitaire</h3>
+                    <p>Création de visuels percutants pour vos campagnes marketing sur tous les canaux.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Témoignages Clients</h2>
+            </div>
+            <div class="testimonial-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"Un travail exceptionnel qui a complètement transformé l'image de notre marque. Nous avons vu une augmentation significative de l'engagement client depuis le rebranding."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="/api/placeholder/200/200" alt="Client">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sophie Durand</h4>
+                            <p>Directrice Marketing, Café Lumière</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"La refonte de notre site web a dépassé toutes nos attentes. Le design est non seulement esthétique mais aussi fonctionnel, ce qui a considérablement amélioré l'expérience utilisateur."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="/api/placeholder/200/200" alt="Client">
+                        </div>
+                        <div class="author-info">
+                            <h4>Marc Leroy</h4>
+                            <p>PDG, TechVision</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"Professionnalisme, créativité et respect des délais. Trois qualités essentielles que j'ai trouvées dans notre collaboration pour le design de notre catalogue produits."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="/api/placeholder/200/200" alt="Client">
+                        </div>
+                        <div class="author-info">
+                            <h4>Julie Martin</h4>
+                            <p>Responsable Communication, Maison Élégante</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Me Contacter</h2>
+            </div>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <h3>Restons en contact</h3>
+                    <p>Vous avez un projet en tête ? N'hésitez pas à me contacter pour discuter de vos besoins et comment je peux vous aider à atteindre vos objectifs.</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Adresse</h4>
+                            <p>123 Rue du Design, 75001 Paris, France</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contact@designstudio.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h4>Téléphone</h4>
+                            <p>+33 1 23 45 67 89</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">BE</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Votre nom">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Votre email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Sujet">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Votre message"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Forsainc</h3>
+                    <p>Création graphique innovante et solutions de design sur mesure pour faire briller votre marque.</p>
+                
